@@ -4,7 +4,6 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Register from "./components/auth/Register";
 import LogIn from "./components/auth/LogIn";
-import NavbarHome from "./components/NavbarHome";
 import { Provider } from "react-redux";
 import store from "./store";
 import jwt_decode from "jwt-decode";
@@ -12,6 +11,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashbaord/Dashboard";
+import "antd/dist/antd.css";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -37,8 +37,6 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Router>
-          <NavbarHome />
-
           <Route path="/" exact component={Home} />
           <Route path="/register" exact component={Register} />
           <Route path="/login" component={LogIn} />
