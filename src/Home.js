@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div>
       <Row>
-        <Col xs={6}>xs=6</Col>
-        <Col xs={6}>xs=6</Col>
+        <Col xs={6}></Col>
+        <Col xs={6}></Col>
       </Row>
     </div>
   );

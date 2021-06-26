@@ -9,7 +9,7 @@ export default function NavbarHome() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-5">
-            <Nav.Link href="/signup">Sign Up</Nav.Link>
+            <Nav.Link href="/register">Sign Up</Nav.Link>
             <Nav.Link href="/login">Log In</Nav.Link>
           </Nav>
         </Navbar.Collapse>
