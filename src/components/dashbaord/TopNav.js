@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Col, Button, Avatar } from "antd";
-import logo from "../../static/logo.jpg";
-import { UserOutlined } from "@ant-design/icons";
+import logo from "../../static/imgpart01.jpeg";
 
 export default function TopNav({ user }) {
   const userName = user.toString().toUpperCase();
@@ -9,10 +8,10 @@ export default function TopNav({ user }) {
     <>
       <div style={{ backgroundColor: "#E85A45" }}>
         <Row style={{ paddingTop: "20px", paddingBottom: "20px" }}>
-          <Col pull={2}>
+          <Col pull={5}>
             <img src={logo} width="10%" />
           </Col>
-          <Col push={5}>
+          <Col push={1}>
             <Button
               type="primary"
               style={{
@@ -24,7 +23,7 @@ export default function TopNav({ user }) {
               CONTACT US
             </Button>
           </Col>
-          <Col push={6}>
+          <Col push={2}>
             <Button
               type="primary"
               size="large"
