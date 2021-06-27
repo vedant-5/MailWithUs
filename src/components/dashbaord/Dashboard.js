@@ -18,6 +18,7 @@ class Dashboard extends Component {
   };
   render() {
     const { user } = this.props.auth;
+    console.log(user.id);
     return (
       <>
         <TopNav user={user.name.split(" ")[0]} />
@@ -34,7 +35,7 @@ class Dashboard extends Component {
                   key="1"
                 >
                   <Card style={{ backgroundColor: "#EAE7DC" }}>
-                    <CreateEmail />
+                    <CreateEmail userId={user.id} />
                   </Card>
                 </TabPane>
                 <TabPane
@@ -45,7 +46,9 @@ class Dashboard extends Component {
                   }
                   key="2"
                 >
-                  <Scheduled />
+                  <Card style={{ backgroundColor: "#EAE7DC" }}>
+                    <Scheduled />
+                  </Card>
                 </TabPane>
                 <TabPane
                   tab={
@@ -55,7 +58,9 @@ class Dashboard extends Component {
                   }
                   key="3"
                 >
-                  <History />
+                  <Card style={{ backgroundColor: "#EAE7DC" }}>
+                    <History />
+                  </Card>
                 </TabPane>
               </Tabs>
             </Container>

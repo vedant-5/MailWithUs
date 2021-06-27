@@ -4,6 +4,7 @@ import logo from "../../static/logo.jpg";
 import { UserOutlined } from "@ant-design/icons";
 
 export default function TopNav({ user }) {
+  const userName = user.toString().toUpperCase();
   return (
     <>
       <div style={{ backgroundColor: "#E85A45" }}>
@@ -32,7 +33,7 @@ export default function TopNav({ user }) {
                 backgroundColor: "#E85A45",
               }}
             >
-              YOUR PROFILE
+              {userName}'s PROFILE
             </Button>
           </Col>
         </Row>

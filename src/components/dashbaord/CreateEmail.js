@@ -9,7 +9,17 @@ import { useHistory } from "react-router";
 
 const { Option } = Select;
 
-export default function CreateEmail() {
+const values = {
+  userID: "",
+  email: "",
+  subject: "",
+  body: "",
+  date: "",
+  occurence: "",
+  time: "",
+};
+
+export default function CreateEmail({ userId }) {
   const [form] = Form.useForm();
 
   const [descriptionTextArea, setDescriptionTextArea] = useState({
@@ -24,6 +34,8 @@ export default function CreateEmail() {
   const [period, setPeriod] = useState("");
   const [time, setTime] = useState("12:00");
   const [input, setInput] = useState("");
+  const [subject, setSubject] = useState("");
+  const [state, setState] = useState(values);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -45,6 +57,11 @@ export default function CreateEmail() {
     console.log(`selected ${value}`);
   }
 
+  function onTimeChange(time, timeString) {
+    setTime(timeString);
+    console.log(time, timeString);
+  }
+
   const handleFinish = (values) => {
     setDate(values.set_date._d);
     setPeriod(values.set_time_period);
@@ -54,19 +71,41 @@ export default function CreateEmail() {
     });
   };
 
-  function onTimeChange(time, timeString) {
-    setTime(timeString);
-    console.log(time, timeString);
-  }
+  const postEmail = () => {
+    var axios = require("axios");
+    var data = JSON.stringify(state);
+
+    var config = {
+      method: "post",
+      url: "http://127.0.0.1:8000/login/",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        localStorage.setItem("access", JSON.stringify(response.data));
+        window.location.href = "/";
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   const handleEmailFinish = () => {
-    console.log(
-      date,
-      period,
-      time,
-      descriptionTextArea.value.toString("html"),
-      input
-    );
+    setState({
+      userID: userId,
+      email: input,
+      subject: subject,
+      body: descriptionTextArea.value.toString("html"),
+      date: date,
+      occurence: period,
+      time: time,
+    });
+    postEmail();
     setDate("");
     setPeriod("");
     setTime("12:00");
@@ -76,6 +115,8 @@ export default function CreateEmail() {
     });
   };
 
+  console.log(state);
+
   const format = "HH:mm";
 
   return (
@@ -84,6 +125,11 @@ export default function CreateEmail() {
         <Input
           placeholder="Enter Email ID"
           onChange={(e) => setInput(e.target.value)}
+        />
+
+        <Input
+          placeholder="Enter Subject"
+          onChange={(e) => setSubject(e.target.value)}
         />
 
         <RichTextEditor
